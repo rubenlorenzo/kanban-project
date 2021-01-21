@@ -1,0 +1,25 @@
+@import "../../colors.scss";
+
+nav{
+  background-color: $colorThemeDark;
+  width: 20%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-style: solid; 
+  border-color: $colorThemeLight;
+  border-width: 0px 0px 3px 0px;
+  height:800px
+}
+
+ul{
+  list-style: none;
+  margin-left: -1em;
+}
+
+ul>li{
+  background-color: $colorThemeLight;
+  margin-right: 2em;
+  padding: 1em;
+  margin-bottom: 0.5em; 
+  border-radius: 0.5em;
+}
