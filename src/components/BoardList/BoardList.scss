@@ -7,8 +7,8 @@ nav{
   padding-bottom: 1em;
   border-style: solid; 
   border-color: $colorThemeLight;
-  border-width: 0px 0px 3px 0px;
-  height:800px
+  border-width: 3px 0px 3px 0px;
+  height:800px;
 }
 
 ul{
@@ -22,4 +22,7 @@ ul>li{
   padding: 1em;
   margin-bottom: 0.5em; 
   border-radius: 0.5em;
+  border: 2px solid $colorBorderStandard;
+  color: $colorFontStandard;
+  font-weight: bold;
 }

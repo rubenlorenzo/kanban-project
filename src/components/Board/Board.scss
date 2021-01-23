@@ -1,0 +1,16 @@
+@import '../../colors.scss';
+
+.Board{
+  height:800px;
+  background-color:$colorThemeLight;
+  width:80%;
+  padding-bottom: 2em;
+  padding-left: 2em;
+  border-style: solid;
+  border-color: $colorBorderStandard;
+  border-width: 3px ;
+}
+
+.Board > h3{
+  color: $colorFontStandard;
+}

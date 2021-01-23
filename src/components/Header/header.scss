@@ -1,8 +1,7 @@
 @import "../../colors.scss";
 
 header{
-  padding:0.5em;
+  padding:0.3em 0.3em 0.3em 2.8em;
   background-color:$colorThemeDarkest;
-  color:#f1aa9b;
-  border-bottom: 2px solid $colorThemeLight;
+  color:$colorThemeLightest;
 }

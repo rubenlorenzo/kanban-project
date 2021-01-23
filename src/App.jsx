@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import BoardList from './components/BoardList';
+import Board from './components/Board';
 import './App.scss';
 
 
@@ -7,7 +8,10 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <BoardList/>   
+      <div className="content">
+        <BoardList/>
+        <Board/>   
+      </div>  
     </div>
   );
 }
