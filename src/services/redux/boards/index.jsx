@@ -1,0 +1,1 @@
+export { default as boardsReducer } from './reducer';
