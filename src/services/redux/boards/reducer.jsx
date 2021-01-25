@@ -1,16 +1,16 @@
 const initialState = {
   boards: [
     {
-      text: "Programación",
-      id: 1,
+      name: "Programación",
+      id: "1",
     },
     {
-      text: "Casa",
-      id: 2,
+      name: "Casa",
+      id: "2",
     },
     {
-      text: "Tareas Pendientes",
-      id: 3,
+      name: "Tareas Pendientes",
+      id: "3",
     },
   ],
 };

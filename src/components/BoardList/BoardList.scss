@@ -27,7 +27,23 @@ ul>li{
   font-weight: bold;
 }
 
-.boardText{
+.boardName{
   position: relative;
   top:-0.15em;
+}
+
+.active {
+  color: $colorFontStandard;
+  text-decoration: none;
+}
+
+
+a{
+  text-decoration: none;
+  color: $colorBorderStandard;
+
+}
+
+a:hover{
+  color: #25636e;
 }
