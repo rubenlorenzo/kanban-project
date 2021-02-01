@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { FaTh } from "react-icons/fa";
+import validator from "validator";
 import "./BoardList.scss";
 
 
@@ -40,7 +41,22 @@ class BoardList extends React.Component{
   }
 
   handleSubmit() {
-    this.props.addBoard(this.state.name);
+    if(validator.isAlpha(this.state.name.replace(/ /g, ""))){
+      
+      let sentence = "";
+      let words = this.state.name.split(" ");
+      
+      for(let i = 0; i < words.length; i++){
+        if(i >= 0 && i < words.length-1){
+          sentence = sentence + words[i] + " ";
+        }else{
+          sentence = sentence + words[i];
+        }
+      }
+
+      this.props.addBoard(this.state.name);
+    }
+    
   }
 };
 
