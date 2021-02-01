@@ -11,12 +11,14 @@ nav{
   height:800px;
 }
 
-ul{
+ul, .add{
   list-style: none;
   margin-left: -1em;
+  
+
 }
 
-ul>li{
+ul>li, .addContent{
   background-color: $colorThemeLight;
   margin-right: 2em;
   padding: 1em;
@@ -25,6 +27,44 @@ ul>li{
   border: 2px solid $colorBorderStandard;
   color: $colorFontStandard;
   font-weight: bold;
+}
+
+.add{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+}
+
+.addContent{
+  width: 5%;
+  padding:1em;
+  text-align: right;
+  
+  > .inputName{
+    display: none;
+  }
+
+  > span{
+    width: 1em;
+    display: inline-block;
+    padding-right: 1em;
+  }
+}
+
+.addContent:hover{
+  width: 100%;
+  margin-left: 2.5em;
+  padding: 0.66em;
+
+  > .inputName{
+    display:inline;
+    width: 75%;
+  }
+  
+  > span{
+    margin-left:4%;
+  }
+  
 }
 
 .boardName{
