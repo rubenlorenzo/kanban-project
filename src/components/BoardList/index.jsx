@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { FaTh } from "react-icons/fa";
+import { FaTh, FaPlus } from "react-icons/fa";
 import validator from "validator";
 import "./BoardList.scss";
 
@@ -28,7 +28,10 @@ class BoardList extends React.Component{
           </ul> 
         ))}
         <div className="add">
-          <div className="addContent"><input className="inputName" value={this.state.name} onChange={this.handleChange}></input><span onClick={() => this.handleSubmit()}>+</span></div>
+          <div className="addBoard">
+            <input className="inputName" value={this.state.name} onChange={this.handleChange}></input>
+            <span onClick={() => this.handleSubmit()}><FaPlus/></span>
+          </div>
         </div>
         
       </nav> 
