@@ -56,8 +56,20 @@ class BoardList extends React.Component{
           sentence = sentence + words[i];
         }
       }
+      
+      let boardExist=false;
+      this.props.boards.forEach(board => {
+        if(board.name.toLowerCase() === this.state.name.toLowerCase()){
+          boardExist=true;
+          alert("Tablero repetido")
+        }
+      });
 
-      this.props.addBoard(this.state.name);
+      if(!boardExist){
+        this.props.addBoard(this.state.name); 
+      }  
+    }else{
+      alert("Nombre del tablero, con solo letras del alfabeto")
     }
     
   }
