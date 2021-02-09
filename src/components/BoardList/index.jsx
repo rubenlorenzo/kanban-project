@@ -1,15 +1,22 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 import { connect } from "react-redux";
-import { FaTh, FaPlus } from "react-icons/fa";
-import validator from "validator";
+import { FaPlus } from "react-icons/fa";
+
+import validatorBoardName from './validatorBoardName';
 import "./BoardList.scss";
+import  Board  from "./Board";
 
 
 class BoardList extends React.Component{
   constructor(props){
     super(props);
-    this.state = { name: '' };
+    
+    this.state = { 
+      name: '', 
+      boards: props.boards,
+    };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   };
@@ -17,16 +24,11 @@ class BoardList extends React.Component{
   render(){
     return (
       <nav>
-        {this.props.boards.map((board) => (
-          <ul key={board.id}>
-            <li >
-              <NavLink to={`/board/${board.id}`} activeClassName="active" exact>
-                <FaTh />
-                &nbsp;&nbsp;<span className="boardName">{board.name}</span>
-              </NavLink>
-            </li>
-          </ul> 
+        <ul>
+        {this.state.boards.map((board) => (
+          <Board key={board.id} id={board.id} name={board.name} edit={board.edit}/>
         ))}
+        </ul>
         <div className="add">
           <div className="addBoard">
             <input className="inputName" value={this.state.name} onChange={this.handleChange}></input>
@@ -36,44 +38,27 @@ class BoardList extends React.Component{
         
       </nav> 
     );
-  }
+  };
+
   
 
   handleChange(event){
     this.setState({ name:event.target.value})
   }
 
-  handleSubmit() {
-    if(validator.isAlpha(this.state.name.replace(/ /g, ""))){
-      
-      let sentence = "";
-      let words = this.state.name.split(" ");
-      
-      for(let i = 0; i < words.length; i++){
-        if(i >= 0 && i < words.length-1){
-          sentence = sentence + words[i] + " ";
-        }else{
-          sentence = sentence + words[i];
-        }
-      }
-      
-      let boardExist=false;
-      this.props.boards.forEach(board => {
-        if(board.name.toLowerCase() === this.state.name.toLowerCase()){
-          boardExist=true;
-          alert("Tablero repetido")
-        }
-      });
+  async handleSubmit () {
+    let { result, message } = validatorBoardName(this.props.boards,this.state.name);
 
-      if(!boardExist){
-        this.props.addBoard(this.state.name); 
-      }  
+    if(result){
+      await this.props.addBoard(this.state.name); 
+      this.setState({boards: this.props.boards});  
     }else{
-      alert("Nombre del tablero, con solo letras del alfabeto")
+      alert(message)
     }
-    
   }
 };
+
+
 
 const mapStateToProps = (state) => {
   return {
@@ -86,7 +71,8 @@ const mapDispatchToProps = (dispatch) => ({
     type: "ADD_BOARD",
     payload: name,
     id: Date.now(),
-  })
-})
+    edit:false,
+  }),
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(BoardList);

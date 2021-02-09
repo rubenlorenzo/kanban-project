@@ -67,9 +67,33 @@ ul>li, .addBoard{
   
 }
 
+.board{
+  display: flex;
+  justify-content: normal;
+  
+  > .boardEdit, .boardDelete{
+    margin-left: auto;
+    display: none;
+  } 
+
+  > .boardDelete{
+    margin-top:0.3em;
+  }
+}
+
+.board:hover{
+  > .boardEdit, .boardDelete{
+    display: block;
+  }
+}
+
 .boardName{
   position: relative;
   top:-0.15em;
+}
+
+.inputNameEdit{
+  width: 70%;
 }
 
 .active {
