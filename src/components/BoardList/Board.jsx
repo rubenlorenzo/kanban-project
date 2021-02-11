@@ -56,7 +56,7 @@ class Board extends React.Component {
         <>{/*Button options*/}</>
         {this.state.edit ? (
           //Edit
-          <span className="boardDelete">
+          <span className="deleteBoard" onClick={() => this.deleteBoard(id)}>
             <FaTrashAlt />
           </span>
         ) : (
@@ -76,6 +76,15 @@ class Board extends React.Component {
   undoEditBoard = () => {
     this.setState({ edit: false });
   };
+
+  deleteBoard = async(id) => {
+    var resultConfirm = window.confirm("Deseas eliminar el tablero");
+
+    if(resultConfirm){
+      await this.props.deleteBoard(id);
+      this.props.updateBoards(this.props.boards);
+    }
+  }
 
   renameBoard = async (e, id) => {
     if (e.keyCode === 13 && e.target.value.trim()) {
@@ -110,6 +119,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   renameBoard: (id, name) => renameBoardAction(dispatch, id, name),
+  deleteBoard: (id) => dispatch({
+    type: "DELETE_BOARD",
+    id: id,
+  })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

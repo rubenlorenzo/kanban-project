@@ -26,7 +26,7 @@ class BoardList extends React.Component{
       <nav>
         <ul>
         {this.state.boards.map((board) => (
-          <Board key={board.id} id={board.id} name={board.name} edit={board.edit}/>
+          <Board key={board.id} id={board.id} name={board.name} edit={board.edit} updateBoards={this.updateBoards}/>
         ))}
         </ul>
         <div className="add">
@@ -55,6 +55,10 @@ class BoardList extends React.Component{
     }else{
       alert(message)
     }
+  }
+
+  updateBoards = (boards) =>{
+    this.setState({boards})
   }
 };
 

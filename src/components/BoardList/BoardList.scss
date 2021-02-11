@@ -71,18 +71,18 @@ ul>li, .addBoard{
   display: flex;
   justify-content: normal;
   
-  > .boardEdit, .boardDelete{
+  > .boardEdit, .deleteBoard{
     margin-left: auto;
     display: none;
   } 
 
-  > .boardDelete, .undoEditBoard{
+  > .deleteBoard, .undoEditBoard{
     margin-top:0.3em;
   }
 }
 
 .board:hover{
-  > .boardEdit, .boardDelete{
+  > .boardEdit, .deleteBoard{
     display: block;
   }
 }

@@ -41,7 +41,15 @@ const boardsReducer = (state = initialState, action) => {
         }
       });
 
-      return state
+      return state;
+
+    case "DELETE_BOARD":
+      return {
+        ...state,
+        boards: state.boards.filter(
+          (board) => board.id !== action.id,
+        )
+      }
         
       
  
