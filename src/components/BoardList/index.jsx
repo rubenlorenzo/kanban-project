@@ -1,38 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
-import  Board  from "./Board";
+import Board from "./Board";
 import AddBoard from "./AddBoard";
 import "./BoardList.scss";
 
-class BoardList extends React.Component{
-  constructor(props){
+class BoardList extends React.Component {
+  constructor(props) {
     super(props);
-    
-    this.state = { 
-      name: '', 
+
+    this.state = {
       boards: props.boards,
     };
-  };
+  }
 
-  render(){
+  render() {
     return (
       <nav>
         <ul>
-        {this.state.boards.map((board) => (
-          <Board key={board.id} id={board.id} name={board.name} edit={board.edit} updateBoards={this.updateBoards}/>
-        ))}
+          {this.state.boards.map((board) => (
+            <Board
+              key={board.id}
+              id={board.id}
+              name={board.name}
+              edit={board.edit}
+              updateBoards={this.updateBoards}
+            />
+          ))}
         </ul>
-        <AddBoard updateBoards={this.updateBoards}/>
-      </nav> 
+        <AddBoard updateBoards={this.updateBoards} />
+      </nav>
     );
-  };
-
-  updateBoards = (boards) =>{
-    this.setState({boards})
   }
-};
 
-
+  updateBoards = (boards) => {
+    this.setState({ boards });
+  };
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -40,4 +43,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps,)(BoardList);
+export default connect(mapStateToProps)(BoardList);

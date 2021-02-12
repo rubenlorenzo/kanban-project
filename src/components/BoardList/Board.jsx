@@ -77,14 +77,14 @@ class Board extends React.Component {
     this.setState({ edit: false });
   };
 
-  deleteBoard = async(id) => {
-    var resultConfirm = window.confirm("Deseas eliminar el tablero");
+  deleteBoard = async (id) => {
+    let resultConfirm = window.confirm("Deseas eliminar el tablero");
 
-    if(resultConfirm){
+    if (resultConfirm) {
       await this.props.deleteBoard(id);
       this.props.updateBoards(this.props.boards);
     }
-  }
+  };
 
   renameBoard = async (e, id) => {
     if (e.keyCode === 13 && e.target.value.trim()) {
@@ -119,10 +119,11 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   renameBoard: (id, name) => renameBoardAction(dispatch, id, name),
-  deleteBoard: (id) => dispatch({
-    type: "DELETE_BOARD",
-    id: id,
-  })
+  deleteBoard: (id) =>
+    dispatch({
+      type: "DELETE_BOARD",
+      id: id,
+    }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

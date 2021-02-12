@@ -19,7 +19,8 @@ const initialState = {
 };
 
 const boardsReducer = (state = initialState, action) => {
-  console.log(state.boards, action.type,action.id, action.payload, action.edit);
+  console.log(state.boards, action.type, action.id, action.name, action.edit);
+  
   switch (action.type) {
     case "ADD_BOARD":
       return {
@@ -27,16 +28,16 @@ const boardsReducer = (state = initialState, action) => {
         boards: [
           ...state.boards,
           {
-            name:action.payload,
-            id:""+action.id,
-            edit: action.edit
+            name: action.name,
+            id: "" + action.id,
+            edit: action.edit,
           },
-        ]
-      }
-    
+        ],
+      };
+
     case "RENAME_BOARD":
       state.boards.forEach((board) => {
-        if(board.id === action.id){
+        if (board.id === action.id) {
           board.name = action.name;
         }
       });
@@ -46,13 +47,9 @@ const boardsReducer = (state = initialState, action) => {
     case "DELETE_BOARD":
       return {
         ...state,
-        boards: state.boards.filter(
-          (board) => board.id !== action.id,
-        )
-      }
-        
-      
- 
+        boards: state.boards.filter((board) => board.id !== action.id),
+      };
+
     default:
       return state;
   }

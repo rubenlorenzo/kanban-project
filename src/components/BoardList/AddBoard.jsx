@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => ({
   addBoard: (name) =>
     dispatch({
       type: "ADD_BOARD",
-      payload: name,
+      name: name,
       id: Date.now(),
       edit: false,
     }),
