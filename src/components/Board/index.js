@@ -1,22 +1,28 @@
-import React from 'react';
+import React from "react";
 import { connect } from "react-redux";
-import './Board.scss';
+import "./Board.scss";
 
 const Board = (props) => {
-  const boardId = props.match.params.boardId;
-  let boardSelect = props.boards.find(board => board.id === boardId);
+  let boardSelect = props.board;
 
-  return(
-    <div className="Board">
-      <h3>{boardSelect.name}</h3>
-    </div>
-  )
-}
+  return (
+    <>
+      {boardSelect ? (
+        <div className="Board">
+          <h3>{boardSelect.name}</h3>
+        </div>
+      ) : (
+        <div className="Board"></div>
+      )}
+    </>
+  );
+};
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    boards: state.boards.boards,
+    board: state.boards.boards.filter(
+      (board) => board.id === ownProps.match.params.boardId
+    )[0],
   };
 };
 
