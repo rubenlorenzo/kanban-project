@@ -2,7 +2,7 @@
 
 Un proyecto ejemplo de un gestor de tareas, basado en trello y el sistema kanban, para practicar desarrollo FrontEnd.
 
-[Características](##Características)|[Tecnologías utilizadas](##Tecnologías-utilizadas)|[Instalación](##Instalación)
+[Características](##Características) | [Tecnologías utilizadas](##Tecnologías-utilizadas) | [Instalación](##Instalación)
 
 ## Caracteristicas
 
