@@ -1,25 +1,41 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { FaTh } from "react-icons/fa";
+import Board from "./Board";
+import AddBoard from "./AddBoard";
 import "./BoardList.scss";
 
-const BoardList = (props) => {
-  return (
-    <nav>
-      {props.boards.map((board) => (
-        <ul key={board.id}>
-          <li >
-            <NavLink to={`/board/${board.id}`} activeClassName="active" exact>
-              <FaTh />
-              &nbsp;&nbsp;<span className="boardName">{board.name}</span>
-            </NavLink>
-          </li>
+class BoardList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      boards: props.boards,
+    };
+  }
+
+  render() {
+    return (
+      <nav>
+        <ul>
+          {this.state.boards.map((board) => (
+            <Board
+              key={board.id}
+              id={board.id}
+              name={board.name}
+              edit={board.edit}
+              updateBoards={this.updateBoards}
+            />
+          ))}
         </ul>
-      ))}
-    </nav>
-  );
-};
+        <AddBoard updateBoards={this.updateBoards} />
+      </nav>
+    );
+  }
+
+  updateBoards = (boards) => {
+    this.setState({ boards });
+  };
+}
 
 const mapStateToProps = (state) => {
   return {

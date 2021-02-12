@@ -11,12 +11,14 @@ nav{
   height:800px;
 }
 
-ul{
+ul, .add{
   list-style: none;
   margin-left: -1em;
+  
+
 }
 
-ul>li{
+ul>li, .addBoard{
   background-color: $colorThemeLight;
   margin-right: 2em;
   padding: 1em;
@@ -27,9 +29,71 @@ ul>li{
   font-weight: bold;
 }
 
+.add{
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+}
+
+.addBoard{
+  width: 5%;
+  padding:1.1em;
+  display: flex;
+  justify-content: space-between;
+  
+  > .inputName{
+    display: none;
+  }
+
+  > span{
+    font-size: 0.8em;
+  }
+}
+
+.addBoard:hover{
+  width: 100%;
+  margin-left: 2.5em;
+  padding: 0.66em;
+
+  > .inputName{
+    display:block;
+    width: 70%;
+  }
+  
+  > span{
+    padding: 0.55em 0.7em 0em 0em;
+    display: block;
+  }
+  
+}
+
+.board{
+  display: flex;
+  justify-content: normal;
+  
+  > .boardEdit, .deleteBoard{
+    margin-left: auto;
+    display: none;
+  } 
+
+  > .deleteBoard, .undoEditBoard{
+    margin-top:0.3em;
+  }
+}
+
+.board:hover{
+  > .boardEdit, .deleteBoard{
+    display: block;
+  }
+}
+
 .boardName{
   position: relative;
   top:-0.15em;
+}
+
+.inputNameEdit{
+  width: 70%;
 }
 
 .active {
