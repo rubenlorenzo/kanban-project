@@ -2,11 +2,7 @@
 
 Un proyecto ejemplo de un gestor de tareas, basado en trello y el sistema kanban, para practicar desarrollo FrontEnd.
 
-<p align="center">
-  <a href="##Caracteristicas">Características</a> •
-  <a href="##Tecnologías utilizadas">Tecnologías utilizadas</a> •  
-  <a href="##Instalación">Instalación</a>
-</p>
+[Características](##Características)|[Tecnologías utilizadas](##Tecnologías-utilizadas)|[Instalación](##Instalación)
 
 ## Caracteristicas
 
@@ -19,14 +15,15 @@ Contiene los siguientes:
 + [ ] Tareas
 
 ### Usos 
-Los **tableros**, **listas de tareas** y **tareas**. Se tiene que poder: 
+Los **tableros**, **listas de tareas** y **tareas**. Se tienen que poder: 
 
-| Usos | **Tableros** | **L.Tareas** | **Tareas** |
+| | **Tableros** | **L.Tareas** | **Tareas** |
 |-------|-------|-------|-------|
-| Crear     | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> |
-| Renombrar | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> |
-| Eliminar  | <input type="checkbox" checked> | <input type="checkbox"> | <input type="checkbox"> |
-| Mover     |                         | <input type="checkbox"> | <input type="checkbox"> |
+| Crear     | :ballot_box_with_check: | :black_square_button: | :black_square_button: |
+| Renombrar | :ballot_box_with_check: | :black_square_button: | :black_square_button: |
+| Eliminar  | :ballot_box_with_check: | :black_square_button: | :black_square_button: |
+| Mover     |                         | :black_square_button: | :black_square_button: |
+ 
 
 ## Tecnologías utilizadas 
 + HTML5
