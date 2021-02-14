@@ -3,27 +3,67 @@ import { connect } from "react-redux";
 import List from "./List";
 import "./Board.scss";
 
-const Board = (props) => {
-  let selectBoard = props.board;
-  let lists = props.lists;
+class Board extends React.Component {
+  constructor(props){
+    super(props)
 
-  return (
-    <>
-      {selectBoard ? (
-        <div className="Board">
-          <h3>{selectBoard.name}</h3>
+    this.state = {
+      selectBoard: props.board,
+      lists: props.lists,
+      startPosition:null,
+      endPosition:null
+    }    
+  }  
 
-          <div id="lists">
-            {lists.map((list) => (
-              <List name={list.name} />
-            ))}
+  render(){
+    return (
+      <>
+        {this.state.selectBoard ? (
+          <div className="Board">
+            <h3>{this.state.selectBoard.name}</h3>
+
+            <div id="lists">
+              {this.state.lists.map((list,index) => (
+                <List
+                  name={list.name} 
+                  key={index}            
+                  index={index}
+                  dragStart={this.handleDragStart}
+                  dragEnter={this.handleDragEnter}
+                  dragEnd={this.handleDragEnd}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="Board"></div>
-      )}
-    </>
-  );
+        ) : (
+          <div className="Board"></div>
+        )}
+      </>
+    );
+  }
+
+  handleDragStart = (e, position) => {    
+    this.setState({startPosition: position});    
+  };
+
+  handleDragEnter = (e,position) => {    
+    this.setState({endPosition: position});
+  }
+
+  handleDragEnd = async(e) => {
+    const listsCopy = [...this.state.lists];    
+    const dragOverListContent = listsCopy[this.state.endPosition];    
+
+    listsCopy[this.state.endPosition] = listsCopy[this.state.startPosition];
+    listsCopy[this.state.startPosition] = dragOverListContent;    
+    
+    this.setState({
+      lists:listsCopy,
+      startPosition: null,
+      endPosition: null
+    });    
+  } 
+
 };
 
 const mapStateToProps = (state, ownProps) => {

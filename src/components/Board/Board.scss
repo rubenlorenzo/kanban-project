@@ -23,8 +23,10 @@
   margin-top: 1em;
 
   .list{
+    background-color:$colorThemeLight;
     margin: 0px 2em 0px 2em;
-    
+    cursor: move;
+
     .titleList{
       width: 13em;
       height: 2.1em;
