@@ -8,6 +8,7 @@ class Board extends React.Component {
     super(props);
 
     this.state = {
+      id: props.match.params.boardId,
       selectBoard: props.board,
 
       lists: props.lists,
@@ -20,10 +21,18 @@ class Board extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    if(props.match.params.boardId !== state.id){
+      return { 
+        id: props.match.params.boardId,
+        selectBoard: props.board,
+        lists: props.lists,
+      };
+    }
+
     if (state.startPosition === null) {
       return {
         lists: props.lists,
-      };
+      };      
     }
 
     return null;
