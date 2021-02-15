@@ -12,17 +12,26 @@
 }
 
 .Board {
-  
-  h3{
-    color: #25636e;    
+  div{
+    display: flex;
+    h3{
+      color: #25636e;    
+    }
+    button{
+      margin-top: 0.5em;
+      border: none;
+      text-decoration: none;
+      background: none;        
+      color: #25636e;
+    }
   }
 }
 
 #lists{
   display: flex;
   margin-top: 1em;
-
-  .list{
+  
+  .list, #addList{
     background-color:$colorThemeLight;
     margin: 0px 2em 0px 2em;
     cursor: move;
@@ -49,5 +58,17 @@
       }
     }
     
+  }
+
+  #addList{
+    display: none;
+    .titleList{
+      margin-top: -0.3em;
+      padding: 0em 0.3em 0.3em 0em;
+
+      input{
+        width: 11em;
+      }
+    }
   }
 }  

@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import List from "./List";
+import AddList from "./AddList";
+import { FaList, FaLevelDownAlt } from "react-icons/fa";
 import "./Board.scss";
 
 class Board extends React.Component {
@@ -10,7 +12,7 @@ class Board extends React.Component {
     this.state = {
       id: props.match.params.boardId,
       selectBoard: props.board,
-
+      
       lists: props.lists,
 
       startPosition: null,
@@ -18,11 +20,19 @@ class Board extends React.Component {
       startId: null,
       endId: null,
     };
+
+    this.addList = React.createRef();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.boardId === prevState.id) {
+      this.addList.current.style.display = "none";
+    }
   }
 
   static getDerivedStateFromProps(props, state) {
-    if(props.match.params.boardId !== state.id){
-      return { 
+    if (props.match.params.boardId !== state.id) {
+      return {
         id: props.match.params.boardId,
         selectBoard: props.board,
         lists: props.lists,
@@ -32,7 +42,7 @@ class Board extends React.Component {
     if (state.startPosition === null) {
       return {
         lists: props.lists,
-      };      
+      };
     }
 
     return null;
@@ -43,9 +53,19 @@ class Board extends React.Component {
       <>
         {this.state.selectBoard ? (
           <div className="Board">
-            <h3>{this.state.selectBoard.name}</h3>
+            <div>
+              <h3>{this.state.selectBoard.name}</h3>
+              <button onClick={() => this.showAddList(true)}>
+                <FaList />
+                <FaLevelDownAlt />
+              </button>
+            </div>
 
             <div id="lists">
+              <AddList
+                onAddList={this.addList}
+                onShowAddList={this.showAddList}
+              />
               {this.state.lists
                 .sort((a, b) => {
                   return a.position - b.position;
@@ -98,6 +118,14 @@ class Board extends React.Component {
       endPosition: null,
       endId: null,
     });
+  };
+
+  showAddList = (show) => {
+    if (show) {
+      this.addList.current.style.display = "block";
+    } else {
+      this.addList.current.style.display = "none";
+    }
   };
 }
 
