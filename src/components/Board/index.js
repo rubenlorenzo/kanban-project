@@ -4,18 +4,32 @@ import List from "./List";
 import "./Board.scss";
 
 class Board extends React.Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       selectBoard: props.board,
-      lists: props.lists,
-      startPosition:null,
-      endPosition:null
-    }    
-  }  
 
-  render(){
+      lists: props.lists,
+
+      startPosition: null,
+      endPosition: null,
+      startId: null,
+      endId: null,
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (state.startPosition === null) {
+      return {
+        lists: props.lists,
+      };
+    }
+
+    return null;
+  }
+
+  render() {
     return (
       <>
         {this.state.selectBoard ? (
@@ -23,16 +37,21 @@ class Board extends React.Component {
             <h3>{this.state.selectBoard.name}</h3>
 
             <div id="lists">
-              {this.state.lists.map((list,index) => (
-                <List
-                  name={list.name} 
-                  key={index}            
-                  index={index}
-                  dragStart={this.handleDragStart}
-                  dragEnter={this.handleDragEnter}
-                  dragEnd={this.handleDragEnd}
-                />
-              ))}
+              {this.state.lists
+                .sort((a, b) => {
+                  return a.position - b.position;
+                })
+                .map((list, index) => (
+                  <List
+                    name={list.name}
+                    key={index}
+                    index={index}
+                    id={list.id}
+                    dragStart={this.handleDragStart}
+                    dragEnter={this.handleDragEnter}
+                    dragEnd={this.handleDragEnd}
+                  />
+                ))}
             </div>
           </div>
         ) : (
@@ -42,29 +61,36 @@ class Board extends React.Component {
     );
   }
 
-  handleDragStart = (e, position) => {    
-    this.setState({startPosition: position});    
+  handleDragStart = (e, position, id) => {
+    this.setState({
+      startPosition: position,
+      startId: id,
+    });
   };
 
-  handleDragEnter = (e,position) => {    
-    this.setState({endPosition: position});
-  }
-
-  handleDragEnd = async(e) => {
-    const listsCopy = [...this.state.lists];    
-    const dragOverListContent = listsCopy[this.state.endPosition];    
-
-    listsCopy[this.state.endPosition] = listsCopy[this.state.startPosition];
-    listsCopy[this.state.startPosition] = dragOverListContent;    
-    
+  handleDragEnter = (e, position, id) => {
     this.setState({
-      lists:listsCopy,
-      startPosition: null,
-      endPosition: null
-    });    
-  } 
+      endPosition: position,
+      endId: id,
+    });
+  };
 
-};
+  handleDragEnd = async (e) => {
+    await this.props.replacePositionLists(
+      this.state.startPosition,
+      this.state.startId,
+      this.state.endPosition,
+      this.state.endId
+    );
+
+    this.setState({
+      startPosition: null,
+      startId: null,
+      endPosition: null,
+      endId: null,
+    });
+  };
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -77,4 +103,15 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Board);
+const mapDispatchToProps = (dispatch) => ({
+  replacePositionLists: (startPosition, startId, endPosition, endId) =>
+    dispatch({
+      type: "REPLACE_POSITIONS_LISTS",
+      startPosition,
+      startId,
+      endPosition,
+      endId,
+    }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
