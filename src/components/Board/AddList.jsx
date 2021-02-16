@@ -6,12 +6,24 @@ import { FaReply } from "react-icons/fa";
 class AddList extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       name: "",
       boardId:props.boardId,
       lists:props.lists,
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.boardId !== state.boardId) {
+      return {
+        name:"",
+        boardId: props.boardId,
+        lists: props.lists,
+      };
+    }
+
+    return null;
   }
 
   render() {
@@ -35,6 +47,7 @@ class AddList extends React.Component {
   }
 
   handleChange = (event) =>{
+    console.log(this.props.boardId,this.state.boardId);
     this.setState({ name: event.target.value });
   }
 
