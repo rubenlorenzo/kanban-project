@@ -12,7 +12,7 @@ class Board extends React.Component {
     this.state = {
       id: props.match.params.boardId,
       selectBoard: props.board,
-      
+
       lists: props.lists,
 
       startPosition: null,
@@ -70,13 +70,13 @@ class Board extends React.Component {
               />
               {this.state.lists
                 .sort((a, b) => {
-                  return b.position - a.position ;
+                  return b.position - a.position;
                 })
                 .map((list) => (
                   <List
-                    name={list.name}
-                    key={list.id}                    
-                    id={list.id}
+                    list={list}
+                    key={list.id}
+                    lists={this.state.lists}
                     position={list.position}
                     dragStart={this.handleDragStart}
                     dragEnter={this.handleDragEnter}
