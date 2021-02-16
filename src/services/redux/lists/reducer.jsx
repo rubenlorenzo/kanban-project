@@ -4,7 +4,7 @@ const initialState = {
       id: "1",
       name: "Pendiente",
       boardId: "1",
-      position: 0,
+      position: 2,
     },
     {
       id: "2",
@@ -16,7 +16,7 @@ const initialState = {
       id: "3",
       name: "Terminado",
       boardId: "1",
-      position: 2,
+      position: 0,
     },
   ],
 };
@@ -35,6 +35,19 @@ const listsReducer = (state = initialState, action) => {
       });
 
       return state;
+    
+    case "ADD_LIST":
+      return {
+        lists:[
+          ...state.lists,
+          {
+            id:action.id,
+            name:action.name,
+            boardId:action.boardId,
+            position:state.lists.length,
+          }
+        ],
+      };
 
     default:
       return state;

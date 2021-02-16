@@ -2,16 +2,20 @@ import React from "react";
 import { FaPlus } from "react-icons/fa";
 
 class List extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
-  render(){
+  render() {
     return (
       <div
         className="list"
-        onDragStart={(e) => this.props.dragStart(e, this.props.index, this.props.id)}
-        onDragOver={(e) => this.props.dragEnter(e, this.props.index, this.props.id)}
+        onDragStart={(e) =>
+          this.props.dragStart(e, this.props.position, this.props.id)
+        }
+        onDragOver={(e) =>
+          this.props.dragEnter(e, this.props.position, this.props.id)
+        }
         onDragEnd={this.props.dragEnd}
         draggable
       >
@@ -24,6 +28,6 @@ class List extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default List;

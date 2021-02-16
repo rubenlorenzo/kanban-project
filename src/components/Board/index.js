@@ -65,17 +65,19 @@ class Board extends React.Component {
               <AddList
                 onAddList={this.addList}
                 onShowAddList={this.showAddList}
+                boardId={this.state.selectBoard.id}
+                lists={this.state.lists}
               />
               {this.state.lists
                 .sort((a, b) => {
-                  return a.position - b.position;
+                  return b.position - a.position ;
                 })
-                .map((list, index) => (
+                .map((list) => (
                   <List
                     name={list.name}
-                    key={index}
-                    index={index}
+                    key={list.id}                    
                     id={list.id}
+                    position={list.position}
                     dragStart={this.handleDragStart}
                     dragEnter={this.handleDragEnter}
                     dragEnd={this.handleDragEnd}
