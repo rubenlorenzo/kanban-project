@@ -48,7 +48,16 @@ const listsReducer = (state = initialState, action) => {
           }
         ],
       };
+    
+    case "RENAME_LIST":
+      state.lists.forEach((list) => {
+        if (list.id === action.id) {
+          list.name = action.name;
+        }
+      });
 
+      return state;
+      
     default:
       return state;
   }

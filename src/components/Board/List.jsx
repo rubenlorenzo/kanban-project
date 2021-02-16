@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { renameListAction } from "../../services/redux/lists/actions"
 import validatorBoardName from "../BoardList/validatorBoardName";
 import { FaPlus, FaPen, FaReply } from "react-icons/fa";
 
@@ -11,6 +13,16 @@ class List extends React.Component {
       edit: false,
       list: this.props.list,
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if(props.list.name !== state.list.name){
+      return{
+        list: props.list,
+      };
+    }
+
+    return null;
   }
 
   render() {
@@ -74,7 +86,8 @@ class List extends React.Component {
       );
 
       if (result) {
-        console.log(id, this.state.name);
+        await this.props.renameList(id, this.state.name);
+        this.setState({ edit: false });
       } else {
         alert(message);
       }
@@ -86,4 +99,9 @@ class List extends React.Component {
   };
 }
 
-export default List;
+const mapDispatchToProps = (dispatch) => ({
+  renameList: (id, name) => renameListAction(dispatch, id, name),
+});
+
+
+export default connect(null,mapDispatchToProps)(List);
