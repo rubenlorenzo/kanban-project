@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { renameListAction } from "../../services/redux/lists/actions"
+import { renameListAction } from "../../services/redux/lists/actions";
 import validatorBoardName from "../BoardList/validatorBoardName";
-import { FaPlus, FaPen, FaReply } from "react-icons/fa";
+import { FaPlus, FaPen, FaReply, FaTrashAlt } from "react-icons/fa";
 
 class List extends React.Component {
   constructor(props) {
@@ -16,8 +16,8 @@ class List extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if(props.list.name !== state.list.name){
-      return{
+    if (props.list.name !== state.list.name) {
+      return {
         list: props.list,
       };
     }
@@ -50,8 +50,17 @@ class List extends React.Component {
                 placeholder={list.name}
                 onKeyUp={(e) => this.renameList(e, list.id)}
               ></input>
-              <button className="undoEditList" onClick={() => this.undoEditList()}>
+              <button
+                className="undoEditList"
+                onClick={() => this.undoEditList()}
+              >
                 <FaReply />
+              </button>
+              <button
+                className="deleteList"
+                onClick={() => this.deleteList(list.id)}
+              >
+                <FaTrashAlt />
               </button>
             </>
           ) : (
@@ -94,6 +103,14 @@ class List extends React.Component {
     }
   };
 
+  deleteList = async (id) => {
+    let resultConfirm = window.confirm("Deseas eliminar la lista");
+
+    if (resultConfirm) {
+      await this.props.deleteList(id);
+    }
+  };
+
   handleChange = (event) => {
     this.setState({ name: event.target.value });
   };
@@ -101,7 +118,11 @@ class List extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   renameList: (id, name) => renameListAction(dispatch, id, name),
+  deleteList: (id) =>
+    dispatch({
+      type: "DELETE_LIST",
+      id: id,
+    }),
 });
 
-
-export default connect(null,mapDispatchToProps)(List);
+export default connect(null, mapDispatchToProps)(List);

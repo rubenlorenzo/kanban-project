@@ -35,20 +35,20 @@ const listsReducer = (state = initialState, action) => {
       });
 
       return state;
-    
+
     case "ADD_LIST":
       return {
-        lists:[
+        lists: [
           ...state.lists,
           {
-            id:action.id,
-            name:action.name,
-            boardId:action.boardId,
-            position:state.lists.length,
-          }
+            id: action.id,
+            name: action.name,
+            boardId: action.boardId,
+            position: state.lists.length,
+          },
         ],
       };
-    
+
     case "RENAME_LIST":
       state.lists.forEach((list) => {
         if (list.id === action.id) {
@@ -57,6 +57,12 @@ const listsReducer = (state = initialState, action) => {
       });
 
       return state;
+
+    case "DELETE_LIST":
+      return {
+        ...state,
+        lists: state.lists.filter((list) => list.id !== action.id),
+      };
 
     default:
       return state;
