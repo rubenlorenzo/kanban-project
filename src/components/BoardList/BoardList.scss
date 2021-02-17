@@ -63,6 +63,7 @@ ul>li, .addBoard{
   > span{
     padding: 0.55em 0.7em 0em 0em;
     display: block;
+    color: $colorFontHover;
   }
   
 }
@@ -82,9 +83,14 @@ ul>li, .addBoard{
 }
 
 .board:hover{
+  border-color: #387580;
   > .boardEdit, .deleteBoard{
     display: block;
-  }
+  }  
+}
+
+.boardEdit:hover, .deleteBoard:hover, .undoEditBoard:hover{
+  color: $colorFontHover;
 }
 
 .boardName{
@@ -97,17 +103,17 @@ ul>li, .addBoard{
 }
 
 .active {
-  color: $colorFontStandard;
+  color: $colorFontSelection;
   text-decoration: none;
 }
 
 
 a{
   text-decoration: none;
-  color: $colorBorderStandard;
+  color: $colorFontStandard;
 
 }
 
 a:hover{
-  color: #25636e;
+  color: $colorFontHover;
 }

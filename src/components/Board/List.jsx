@@ -44,25 +44,25 @@ class List extends React.Component {
           {edit ? (
             <>
               <input
-                id="inputNameEdit"
+                className="inputNameEdit"
                 value={name}
                 onChange={this.handleChange}
                 placeholder={list.name}
                 onKeyUp={(e) => this.renameList(e, list.id)}
               ></input>
-              <button id="undoEditList" onClick={() => this.undoEditList()}>
+              <button className="undoEditList" onClick={() => this.undoEditList()}>
                 <FaReply />
               </button>
             </>
           ) : (
             <>
               <h4>{list.name}</h4>
-              <button id="editList" onClick={() => this.editList()}>
+              <button className="editList" onClick={() => this.editList()}>
                 <FaPen />
               </button>
             </>
           )}
-          <button>
+          <button className="addTodo">
             <FaPlus />
           </button>
         </div>

@@ -38,7 +38,7 @@ class AddList extends React.Component {
             onChange={this.handleChange}
             onKeyUp={(e) => this.handleSubmit(e, this.state.boardId)}
           ></input>
-          <button onClick={() => this.props.onShowAddList(false)}>
+          <button className="undoEditList" onClick={() => this.props.onShowAddList(false)}>
             <FaReply />
           </button>
         </div>
@@ -47,7 +47,6 @@ class AddList extends React.Component {
   }
 
   handleChange = (event) =>{
-    console.log(this.props.boardId,this.state.boardId);
     this.setState({ name: event.target.value });
   }
 
