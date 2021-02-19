@@ -1,7 +1,7 @@
 @import '../../colors.scss';
 
 .Board{
-  height: calc(100vh - 50px);
+  height: calc(100vh - 134px);
   background-color:$colorThemeLight;
   width: 80%;
   padding-bottom: 2em;
@@ -77,7 +77,7 @@
       display: none;
     }
 
-    .editList:hover, .undoEditList:hover, .addTodo:hover{
+    .editList:hover, .undoEditList:hover, .addTodo:hover, .deleteList:hover{
       color: $colorFontHover;
     }
   }
@@ -94,8 +94,6 @@
       display: block;
     }
   }
-
-  
 
   .inputNameEdit, .undoEditList{
     margin-bottom: 0.3em;

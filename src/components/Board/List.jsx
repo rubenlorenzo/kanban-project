@@ -58,7 +58,7 @@ class List extends React.Component {
               </button>
               <button
                 className="deleteList"
-                onClick={() => this.deleteList(list.id)}
+                onClick={() => this.deleteList(list.id, list.boardId)}
               >
                 <FaTrashAlt />
               </button>
@@ -103,11 +103,11 @@ class List extends React.Component {
     }
   };
 
-  deleteList = async (id) => {
+  deleteList = async (id, boardId) => {
     let resultConfirm = window.confirm("Deseas eliminar la lista");
 
     if (resultConfirm) {
-      await this.props.deleteList(id);
+      await this.props.deleteList(id, boardId);
     }
   };
 
@@ -118,10 +118,11 @@ class List extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   renameList: (id, name) => renameListAction(dispatch, id, name),
-  deleteList: (id) =>
+  deleteList: (id, boardId) =>
     dispatch({
       type: "DELETE_LIST",
-      id: id,
+      id,
+      boardId
     }),
 });
 

@@ -61,12 +61,31 @@ const listsReducer = (state = initialState, action) => {
     case "DELETE_LIST":
       return {
         ...state,
-        lists: state.lists.filter((list) => list.id !== action.id),
+       lists: reorderListsAndDelete(state.lists, action.id, action.boardId),
       };
 
     default:
       return state;
   }
 };
+
+const reorderListsAndDelete = (lists,id, boardId) =>{
+  let i=0;
+  
+  lists.sort((a, b) => {
+    return  a.position - b.position;
+  }).filter(
+    (list) => list["boardId"] === boardId
+  ).forEach((list) =>{ 
+    if(list.id !== id){
+      list.position = i;
+      i++;
+    }else{
+      list.position = -1;
+    }
+  })
+  
+  return lists.filter((list) => list.id !== id);
+}
 
 export default listsReducer;
