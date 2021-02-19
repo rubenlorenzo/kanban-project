@@ -1,3 +1,9 @@
-.content{
-  display: flex;
+@import "./colors.scss";
+
+body{
+  background-color: $colorThemeDarkest;
+  .content{
+    display: flex;
+    
+  }
 }
