@@ -1,6 +1,6 @@
 @import "../../colors.scss";
 
-nav{
+#boardList{
   background-color: $colorThemeDark;
   width: 20%;
   height:calc(100vh - 134px);
@@ -9,30 +9,32 @@ nav{
   border-style: solid; 
   border-color: $colorThemeLight;
   border-width: 3px 0px 3px 0px;
-}
 
-ul, .add{
-  list-style: none;
-  margin-left: -1em;
-  
 
-}
+  ul, .add{
+    list-style: none;
+    margin-left: -1em;
+    
 
-ul>li, .addBoard{
-  background-color: $colorThemeLight;
-  margin-right: 2em;
-  padding: 1em;
-  margin-bottom: 0.5em; 
-  border-radius: 0.5em;
-  border: 2px solid $colorBorderStandard;
-  color: $colorFontStandard;
-  font-weight: bold;
-}
+  }
 
-.add{
-  display: flex;
-  flex-direction: row;
-  justify-content:flex-end;
+  ul>li, .addBoard{
+    background-color: $colorThemeLight;
+    margin-right: 2em;
+    padding: 1em;
+    margin-bottom: 0.5em; 
+    border-radius: 0.5em;
+    border: 2px solid $colorBorderStandard;
+    color: $colorFontStandard;
+    font-weight: bold;
+  }
+
+  .add{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+  }
+
 }
 
 .addBoard{
@@ -103,7 +105,7 @@ ul>li, .addBoard{
 }
 
 .active {
-  color: $colorFontSelection;
+  color: $colorFontEssential;
   text-decoration: none;
 }
 

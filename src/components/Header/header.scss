@@ -4,4 +4,10 @@ header{
   padding:0.3em 0.3em 0.3em 2.8em;
   background-color:$colorThemeDarkest;
   color:$colorThemeLightest;
+  text-shadow:
+       2.2px 2.2px 0 $colorFontEssential,
+     -1px -1px 0 $colorFontEssential,  
+      1px -1px 0 $colorFontEssential,
+      -1px 1px 0 $colorFontEssential,
+       1px 1px 0 $colorFontEssential;
 }

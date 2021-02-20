@@ -15,7 +15,7 @@ class BoardList extends React.Component {
 
   render() {
     return (
-      <nav>
+      <nav id="boardList">
         <ul>
           {this.state.boards.map((board) => (
             <Board

@@ -75,7 +75,7 @@ class List extends React.Component {
             <FaPlus />
           </button>
         </div>
-      </div>
+      </div>      
     );
   }
 
