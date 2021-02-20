@@ -10,8 +10,8 @@ Un proyecto ejemplo de un gestor de tareas, basado en trello y el sistema kanban
 Contiene los siguientes:
 
 + [x] Lista de tableros
-+ [ ] Tableros
-+ [ ] Listas de tareas (Contenidas dentro de cada tablero) 
++ [x] Tableros
++ [x] Listas de tareas (Contenidas dentro de cada tablero) 
 + [ ] Tareas
 
 ### Usos 
@@ -19,10 +19,10 @@ Los **tableros**, **listas de tareas** y **tareas**. Se tienen que poder:
 
 | | **Tableros** | **L.Tareas** | **Tareas** |
 |-------|-------|-------|-------|
-| Crear     | :ballot_box_with_check: | :black_square_button: | :black_square_button: |
-| Renombrar | :ballot_box_with_check: | :black_square_button: | :black_square_button: |
-| Eliminar  | :ballot_box_with_check: | :black_square_button: | :black_square_button: |
-| Mover     |                         | :black_square_button: | :black_square_button: |
+| Crear     | :ballot_box_with_check: | :ballot_box_with_check: | :black_square_button: |
+| Renombrar | :ballot_box_with_check: | :ballot_box_with_check: | :black_square_button: |
+| Eliminar  | :ballot_box_with_check: | :ballot_box_with_check: | :black_square_button: |
+| Mover     |                         | :ballot_box_with_check: | :black_square_button: |
  
 
 ## Tecnologías utilizadas 
