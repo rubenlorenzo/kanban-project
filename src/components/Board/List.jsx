@@ -76,7 +76,7 @@ class List extends React.Component {
             <FaPlus />
           </button>
         </div>
-        <TaskList/>
+        <TaskList boardId={list.boardId} listId={list.id}/>
       </div>      
     );
   }
