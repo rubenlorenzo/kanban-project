@@ -113,7 +113,7 @@ class Board extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     boards: state.boards.boards,
-    board: state.boards.boards.filter((todo) => todo.id === ownProps.id)[0],
+    board: state.boards.boards.filter((board) => board.id === ownProps.id)[0],
   };
 };
 

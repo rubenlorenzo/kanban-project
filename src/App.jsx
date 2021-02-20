@@ -14,6 +14,7 @@ function App() {
           <BoardList/>
           <Switch>
             <Route path="/board/:boardId" component={Board} exact/> 
+            <Route path="/" component={Board} exact/>
           </Switch>  
         </div> 
       </BrowserRouter>       

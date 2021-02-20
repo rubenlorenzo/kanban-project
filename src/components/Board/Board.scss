@@ -1,16 +1,105 @@
 @import '../../colors.scss';
 
 .Board{
-  height:800px;
+  height: calc(100vh - 134px);
   background-color:$colorThemeLight;
-  width:80%;
+  width: 80%;
   padding-bottom: 2em;
-  padding-left: 2em;
+  padding-left: 2em;   
   border-style: solid;
   border-color: $colorBorderStandard;
-  border-width: 3px ;
+  border-width: 3px;
 }
 
-.Board > h3{
-  color: $colorFontStandard;
+.Board {
+  div{
+    display: flex;
+    h3{
+      color:$colorFontSelection;    
+    }
+    button{
+      margin-top: 0.5em;
+      border: none;
+      text-decoration: none;
+      background: none;        
+      color: $colorFontSelection;
+    }
+  }
 }
+
+#lists{
+  display: flex;
+  height: calc(100% - 44px);
+  overflow-x: scroll;
+  .list, #addList{
+    background-color:$colorThemeLight;
+    margin: 0px 2em 0px 2em;
+    cursor: move;
+
+    .titleList{
+      width: 13em;
+      height: 2.1em;
+      display: flex;
+      padding: 0em 0.3em 0em 1em;
+      justify-content: flex-end;
+      background-color: none;      
+      border-bottom: 2px solid #4aa0af;    
+      
+      h4{
+        color: $colorFontSelection;
+        margin: 0.4em auto 0 0;
+      }
+      button{
+        border: none;
+        text-decoration: none;
+        background: none;        
+        color: $colorFontSelection;
+      }
+    }
+    
+  }
+
+  #addList{
+    display: none;
+    .titleList{
+      margin-top: -0.3em;
+      padding: 0em 0.3em 0.3em 0em;
+
+      input{
+        width: 11em;
+      }
+    }
+  }
+
+  .list{
+    
+    .editList{
+      display: none;
+    }
+
+    .editList:hover, .undoEditList:hover, .addTodo:hover, .deleteList:hover{
+      color: $colorFontHover;
+    }
+  }
+
+  .list:hover{
+
+    .titleList{
+      h4{
+        color: $colorFontHover;
+      }
+    }
+
+    .editList{
+      display: block;
+    }
+  }
+
+  .inputNameEdit, .undoEditList{
+    margin-bottom: 0.3em;
+  }
+
+  .inputNameEdit{
+    width: 9em;
+  }
+}  

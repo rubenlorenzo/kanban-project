@@ -3,18 +3,10 @@ import validator from "validator";
 function validatorBoardName(boards, name) {
   let message = "";
 
-  if (validator.isAlpha(name.replace(/ /g, ""))) {
-    let sentence = "";
-    let words = name.split(" ");
+  let nameToOperate = name.replace(/ /g, "");
 
-    for (let i = 0; i < words.length; i++) {
-      if (i >= 0 && i < words.length - 1) {
-        sentence = sentence + words[i] + " ";
-      } else {
-        sentence = sentence + words[i];
-      }
-    }
-
+  if (validator.isAlpha(nameToOperate)) {
+    
     let boardExist = false;
     boards.forEach((board) => {
       if (board.name.toLowerCase() === name.toLowerCase()) {
