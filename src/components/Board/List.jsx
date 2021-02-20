@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { renameListAction } from "../../services/redux/lists/actions";
-import validatorBoardName from "../BoardList/validatorBoardName";
+import validatorListName from "./validatorListName";
 import { FaPlus, FaPen, FaReply, FaTrashAlt } from "react-icons/fa";
 
 class List extends React.Component {
@@ -89,9 +89,10 @@ class List extends React.Component {
 
   renameList = async (e, id) => {
     if (e.keyCode === 13 && e.target.value.trim()) {
-      let { result, message } = validatorBoardName(
+      let { result, message } = validatorListName(
         this.props.lists,
-        this.state.name
+        this.state.name,
+        this.state.list.boardId,
       );
 
       if (result) {

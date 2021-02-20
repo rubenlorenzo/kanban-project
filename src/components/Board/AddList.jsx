@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import validatorBoardName from "../BoardList/validatorBoardName";
+import validatorListName from "./validatorListName";
 import { FaReply } from "react-icons/fa";
 
 class AddList extends React.Component {
@@ -52,9 +52,10 @@ class AddList extends React.Component {
 
   handleSubmit = async (e,boardId) => {
     if (e.keyCode === 13 && e.target.value.trim()) {
-      let { result, message } = validatorBoardName(
-        this.state.lists,
-        this.state.name
+      let { result, message } = validatorListName(
+        this.props.lists,
+        this.state.name,
+        this.state.boardId
       );
         
       if (result) {
