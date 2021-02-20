@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { renameListAction } from "../../services/redux/lists/actions";
+import TaskList from "../TaskList";
 import validatorListName from "./validatorListName";
 import { FaPlus, FaPen, FaReply, FaTrashAlt } from "react-icons/fa";
 
@@ -75,6 +76,7 @@ class List extends React.Component {
             <FaPlus />
           </button>
         </div>
+        <TaskList/>
       </div>      
     );
   }

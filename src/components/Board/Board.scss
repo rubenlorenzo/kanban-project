@@ -72,6 +72,9 @@
   }
 
   .list{
+    display: flex;
+    flex-direction: column;
+    
     .editList{
       display: none;
     }
