@@ -4,15 +4,25 @@
   ul {
     list-style: none;
     margin-left: -2.5em;
+  }
+}
 
-    li {
-      background-color: $colorThemeLightest;
-      margin: 0.5em;
-      padding: 0.8em 0.8em 0.8em 1.5em;
-      border-radius: 0.3em;
-      border: 0.187em solid $colorBorderEssential;
-      color: $colorFontEssential;
-      font-weight: bold;
-    }
+.task,
+.addTask {
+  background-color: $colorThemeLightest;
+  margin: 0.5em;
+  padding: 0.8em 0.8em 0.8em 1.5em;
+  border-radius: 0.3em;
+  border: 0.187em solid $colorBorderEssential;
+  color: $colorFontEssential;
+  font-weight: bold;
+}
+
+.addTask {
+  margin-bottom: -0.5em;
+  padding: 0.5em 0.5em 0.5em 1em;
+
+  .inputName {
+    width: 10em;
   }
 }

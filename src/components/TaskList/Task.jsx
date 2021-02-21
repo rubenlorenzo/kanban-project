@@ -6,13 +6,13 @@ class Task extends React.Component {
 
     this.state = {
       task: props.task,
-    }
+    };
   }
 
   render() {
     const { name } = this.state.task;
     return (
-        <li>{name}</li>
+      <li className="task" >{name}</li>
     );
   }
 }

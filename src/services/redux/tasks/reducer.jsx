@@ -13,15 +13,20 @@ const initialState = {
       boardId: "1",
       listId: "2",
       positionList: 1,
-
     },
     {
       id: "3",
       name: "Tarea 3",
       boardId: "1",
       listId: "3",
-      positionList: 0,
-      positionBoard: 0,
+      positionList: 0,      
+    },
+    {
+      id: "4",
+      name: "Tarea 4",
+      boardId: "1",
+      listId: "1",
+      positionList: 1,      
     },
   ],
 };
