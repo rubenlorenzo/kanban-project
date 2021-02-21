@@ -11,9 +11,7 @@ class Task extends React.Component {
 
   render() {
     const { name } = this.state.task;
-    return (
-      <li className="task" >{name}</li>
-    );
+    return <li className="task">{name}</li>;
   }
 }
 

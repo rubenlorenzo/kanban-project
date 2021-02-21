@@ -78,7 +78,16 @@ class List extends React.Component {
             <FaPlus />
           </button>
         </div>
-        {addTask ? <AddTask undoAddTask={this.undoAddTask} /> : <></>}
+        {addTask ? (
+          <AddTask
+            onAddTask={this.onAddTask}
+            undoAddTask={this.undoAddTask}
+            boardId={list.boardId}
+            listId={list.id}
+          />
+        ) : (
+          <></>
+        )}
         <TaskList boardId={list.boardId} listId={list.id} />
       </div>
     );
