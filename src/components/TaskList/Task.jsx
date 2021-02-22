@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { FaPen, FaReply } from "react-icons/fa";
+import { FaPen, FaReply, FaTrashAlt } from "react-icons/fa";
 
 class Task extends React.Component {
   constructor(props) {
@@ -30,6 +30,12 @@ class Task extends React.Component {
             ></input>
             <button className="undoEditTask" onClick={this.undoEditTask}>
               <FaReply />
+            </button>
+            <button
+              className="deleteTask"
+              onClick={() => this.deleteTask(task.id)}
+            >
+              <FaTrashAlt />
             </button>
           </>
         ) : (
@@ -62,6 +68,14 @@ class Task extends React.Component {
       this.undoEditTask();
     }
   };
+
+  deleteTask = async(id) => {
+    let resultConfirm = window.confirm("Deseas eliminar la tarea");
+
+    if (resultConfirm) {
+      await this.props.deleteTask(id);
+    }
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -70,6 +84,12 @@ const mapDispatchToProps = (dispatch) => ({
       type: "RENAME_TASK",
       id,
       name,
+    }),
+
+  deleteTask: (id) =>
+    dispatch({
+      type: "DELETE_TASK",
+      id,
     }),
 });
 
