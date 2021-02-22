@@ -18,6 +18,33 @@
   font-weight: bold;
 }
 
+.task {
+  display: flex;
+  span {
+    margin-right: auto;
+  }
+  .editTask {
+    display: none;
+    margin-top: -0.05em;
+  }
+
+  .inputTaskNameEdit {
+    width: 10em;
+    height: 1.6em;
+    margin: -0.5em auto -0.5em -1em;
+  }
+
+  .undoEditTask {
+    margin-top: 0.15em;
+  }
+}
+
+.task:hover {
+  .editTask {
+    display: block;
+  }
+}
+
 .addTask {
   margin-bottom: -0.5em;
   padding: 0.5em 0.5em 0.5em 1em;
