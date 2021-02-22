@@ -34,16 +34,26 @@
     margin: -0.5em auto -0.5em -1em;
   }
 
-  .undoEditTask, .deleteTask {
+  .undoEditTask,
+  .deleteTask {
     margin-top: 0.15em;
     padding-right: 0.25em;
   }
 }
 
 .task:hover {
+  span {
+    color: $colorFontHover;
+  }
   .editTask {
     display: block;
   }
+}
+
+.editTask:hover,
+.deleteTask:hover,
+.undoEditTask:hover {
+  color: $colorFontHover;
 }
 
 .addTask {
