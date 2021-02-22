@@ -1,5 +1,6 @@
 import React from "react";
-import { FaPlus, FaPen, FaReply, FaTrashAlt } from "react-icons/fa";
+import { connect } from "react-redux";
+import { FaPen, FaReply } from "react-icons/fa";
 
 class Task extends React.Component {
   constructor(props) {
@@ -25,9 +26,10 @@ class Task extends React.Component {
               className="inputTaskNameEdit"
               placeholder={task.name}
               onChange={this.handleChange}
+              onKeyUp={(e) => this.renameTask(e, task.id, name)}
             ></input>
             <button className="undoEditTask" onClick={this.undoEditTask}>
-              <FaReply/>
+              <FaReply />
             </button>
           </>
         ) : (
@@ -46,13 +48,29 @@ class Task extends React.Component {
     this.setState({ name: event.target.value });
   };
 
-  editTask = (event) =>{
-    this.setState({edit:true});
-  }
+  editTask = () => {
+    this.setState({ edit: true });
+  };
 
-  undoEditTask = (event) => {
-    this.setState({edit:false});
-  }
+  undoEditTask = () => {
+    this.setState({ edit: false });
+  };
+
+  renameTask = async (e, id, name) => {
+    if (e.keyCode === 13 && e.target.value.trim()) {
+      await this.props.renameTask(id, name);
+      this.undoEditTask();
+    }
+  };
 }
 
-export default Task;
+const mapDispatchToProps = (dispatch) => ({
+  renameTask: (id, name) =>
+    dispatch({
+      type: "RENAME_TASK",
+      id,
+      name,
+    }),
+});
+
+export default connect(null, mapDispatchToProps)(Task);

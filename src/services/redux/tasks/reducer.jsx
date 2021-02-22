@@ -32,13 +32,10 @@ const initialState = {
 };
 
 const tasksReducer = (state = initialState, action) => {
-  console.log(state.tasks, action.type, action.boardId);
+  console.log(state.tasks, action.type, action.id, action.boardId);
 
   switch (action.type) {
     case "ADD_TASK": {
-      console.log(state.tasks.filter(
-        (task) => task.listId === action.listId
-      ).length);
       return {
         tasks: [
           ...state.tasks,
@@ -53,6 +50,16 @@ const tasksReducer = (state = initialState, action) => {
           },
         ],
       };
+    }
+
+    case "RENAME_TASK": {
+      state.tasks.forEach((task) => {
+        if (task.id === action.id) {
+          task.name = action.name;
+        }
+      });
+
+      return state;
     }
 
     default:
