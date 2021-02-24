@@ -12,17 +12,17 @@ Contiene los siguientes:
 + [x] Lista de tableros
 + [x] Tableros
 + [x] Listas de tareas (Contenidas dentro de cada tablero) 
-+ [ ] Tareas
++ [x] Tareas
 
 ### Usos 
 Los **tableros**, **listas de tareas** y **tareas**. Se tienen que poder: 
 
 | | **Tableros** | **L.Tareas** | **Tareas** |
 |-------|-------|-------|-------|
-| Crear     | :ballot_box_with_check: | :ballot_box_with_check: | :black_square_button: |
-| Renombrar | :ballot_box_with_check: | :ballot_box_with_check: | :black_square_button: |
-| Eliminar  | :ballot_box_with_check: | :ballot_box_with_check: | :black_square_button: |
-| Mover     |                         | :ballot_box_with_check: | :black_square_button: |
+| Crear     | :ballot_box_with_check: | :ballot_box_with_check: | :ballot_box_with_check: |
+| Renombrar | :ballot_box_with_check: | :ballot_box_with_check: | :ballot_box_with_check: |
+| Eliminar  | :ballot_box_with_check: | :ballot_box_with_check: | :ballot_box_with_check: |
+| Mover     |                         | :ballot_box_with_check: | :ballot_box_with_check: |
  
 
 ## Tecnologías utilizadas 
