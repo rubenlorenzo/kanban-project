@@ -60,6 +60,10 @@
     margin-left: 20%;
     margin-right: 2.2em;
   }
+
+  > button:hover{
+    color: $colorFontHover;
+  }
 }
 
 .board{

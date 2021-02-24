@@ -24,6 +24,10 @@
       background: none;        
       color: $colorFontEssential;
     }
+
+    button:hover{
+      color: $colorFontHover;
+    }
   }
 }
 

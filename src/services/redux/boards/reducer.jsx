@@ -19,7 +19,7 @@ const initialState = {
 };
 
 const boardsReducer = (state = initialState, action) => {
-  console.log(state.boards, action.type, action.id, action.name, action.edit);
+  console.log(state.boards, action);
   
   switch (action.type) {
     case "ADD_BOARD":
