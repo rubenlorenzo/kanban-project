@@ -14,20 +14,16 @@ class Board extends React.Component {
       selectBoard: props.board,
 
       lists: props.lists,
+      addList: false,
 
       startPosition: null,
       endPosition: null,
       startId: null,
       endId: null,
-    };
 
-    this.addList = React.createRef();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.match.params.boardId === prevState.id) {
-      this.addList.current.style.display = "none";
-    }
+      listIdOfTheTaskToMove: null,
+      taskIdOfTheTaskToMove: null,
+    }; 
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -55,19 +51,19 @@ class Board extends React.Component {
           <div className="Board">
             <div>
               <h3>{this.state.selectBoard.name}</h3>
-              <button onClick={() => this.showAddList(true)}>
+              <button onClick={() => this.onAddList()}>
                 <FaList />
                 <FaLevelDownAlt />
               </button>
             </div>
 
             <div id="lists">
-              <AddList
-                onAddList={this.addList}
-                onShowAddList={this.showAddList}
+              {this.state.addList ? (
+              <AddList                              
                 boardId={this.state.selectBoard.id}
                 lists={this.state.lists}
-              />
+                undoAddList={this.undoAddList}
+              />):(<></>)}
               {this.state.lists
                 .sort((a, b) => {
                   return b.position - a.position;
@@ -81,6 +77,10 @@ class Board extends React.Component {
                     dragStart={this.handleDragStart}
                     dragEnter={this.handleDragEnter}
                     dragEnd={this.handleDragEnd}
+                    dragOverTask={this.dragOverTask}
+                    dragEndTask={this.dragEndTask}
+                    setTaskIdToMove={this.setTaskIdToMove}
+                    listIdOfTheTaskToMove={this.state.listIdOfTheTaskToMove}
                   />
                 ))}
             </div>
@@ -122,11 +122,33 @@ class Board extends React.Component {
     });
   };
 
-  showAddList = (show) => {
-    if (show) {
-      this.addList.current.style.display = "block";
-    } else {
-      this.addList.current.style.display = "none";
+  onAddList = () => {
+    this.setState({addList:true});
+  }
+
+  undoAddList = () =>{
+    this.setState({addList:false});
+  }
+
+  dragOverTask = (id) => {
+    this.setState({ listIdOfTheTaskToMove: id });
+  };
+
+  setTaskIdToMove = (id) => {
+    this.setState({ taskIdOfTheTaskToMove: id });
+  };
+
+  dragEndTask = async () => {
+    if(this.state.taskIdOfTheTaskToMove!==null){
+      await this.props.moveTaskOnTheBoard(
+        this.state.taskIdOfTheTaskToMove,
+        this.state.listIdOfTheTaskToMove
+      );
+
+      this.setState({
+        taskIdOfTheTaskToMove: null,
+        listIdOfTheTaskToMove: null,
+      });
     }
   };
 }
@@ -150,6 +172,13 @@ const mapDispatchToProps = (dispatch) => ({
       startId,
       endPosition,
       endId,
+    }),
+
+  moveTaskOnTheBoard: (idTask, listId) =>
+    dispatch({
+      type: "MOVE_TASK_ON_THE_BOARD",
+      id: idTask,
+      listId,
     }),
 });
 

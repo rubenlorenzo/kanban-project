@@ -15,27 +15,29 @@
   div{
     display: flex;
     h3{
-      color:$colorFontSelection;    
+      color:$colorFontEssential;    
     }
     button{
       margin-top: 0.5em;
       border: none;
       text-decoration: none;
       background: none;        
-      color: $colorFontSelection;
+      color: $colorFontEssential;
+    }
+
+    button:hover{
+      color: $colorFontHover;
     }
   }
 }
 
 #lists{
   display: flex;
-  height: calc(100% - 44px);
+  height: calc(100% - 33px);
   overflow-x: scroll;
   .list, #addList{
     background-color:$colorThemeLight;
     margin: 0px 2em 0px 2em;
-    cursor: move;
-
     .titleList{
       width: 13em;
       height: 2.1em;
@@ -43,24 +45,23 @@
       padding: 0em 0.3em 0em 1em;
       justify-content: flex-end;
       background-color: none;      
-      border-bottom: 2px solid #4aa0af;    
+      border-bottom: 2px solid $colorBorderEssential;    
       
       h4{
-        color: $colorFontSelection;
+        color: $colorFontEssential;
         margin: 0.4em auto 0 0;
       }
       button{
         border: none;
         text-decoration: none;
         background: none;        
-        color: $colorFontSelection;
+        color: $colorFontEssential;
       }
     }
     
   }
 
-  #addList{
-    display: none;
+  #addList{    
     .titleList{
       margin-top: -0.3em;
       padding: 0em 0.3em 0.3em 0em;
@@ -72,6 +73,8 @@
   }
 
   .list{
+    display: flex;
+    flex-direction: column;
     
     .editList{
       display: none;
@@ -93,6 +96,10 @@
     .editList{
       display: block;
     }
+  }
+
+  .titleList:hover{
+    cursor: move;
   }
 
   .inputNameEdit, .undoEditList{

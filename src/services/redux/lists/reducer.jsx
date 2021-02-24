@@ -22,7 +22,7 @@ const initialState = {
 };
 
 const listsReducer = (state = initialState, action) => {
-  console.log(state.lists, action.type, action.boardId);
+  console.log(state.lists, action);
 
   switch (action.type) {
     case "REPLACE_POSITIONS_LISTS":

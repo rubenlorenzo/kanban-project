@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import validatorBoardName from "./validatorBoardName";
-import { FaPlus } from "react-icons/fa";
+import { FaReply } from "react-icons/fa";
 
 class AddBoard extends React.Component {
   constructor(props) {
@@ -17,18 +17,18 @@ class AddBoard extends React.Component {
 
   render() {
     let { name } = this.state;
+
     return (
-      <div className="add">
-        <div className="addBoard">
-          <input
-            className="inputName"
-            value={name}
-            onChange={this.handleChange}
-          ></input>
-          <span onClick={() => this.handleSubmit()}>
-            <FaPlus />
-          </span>
-        </div>
+      <div className="addBoard">
+        <input
+          className="inputName"
+          value={name}
+          onChange={this.handleChange}
+          onKeyUp={this.handleSubmit}
+        ></input>
+        <button onClick={(e) => this.props.undoAddBoard(e)}>
+          <FaReply />
+        </button>
       </div>
     );
   }
@@ -37,17 +37,20 @@ class AddBoard extends React.Component {
     this.setState({ name: event.target.value });
   }
 
-  async handleSubmit() {
-    let { result, message } = validatorBoardName(
-      this.props.boards,
-      this.state.name
-    );
+  async handleSubmit(e) {
+    if (e.keyCode === 13 && e.target.value.trim()) {
+      let { result, message } = validatorBoardName(
+        this.props.boards,
+        this.state.name
+      );
 
-    if (result) {
-      await this.props.addBoard(this.state.name);
-      this.props.updateBoards(this.props.boards);
-    } else {
-      alert(message);
+      if (result) {
+        await this.props.addBoard(this.state.name);
+        this.props.updateBoards(this.props.boards);
+        this.props.undoAddBoard();
+      } else {
+        alert(message);
+      }
     }
   }
 }

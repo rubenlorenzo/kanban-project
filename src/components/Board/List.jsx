@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { renameListAction } from "../../services/redux/lists/actions";
+import TaskList from "../TaskList";
+import AddTask from "../TaskList/AddTask";
 import validatorListName from "./validatorListName";
 import { FaPlus, FaPen, FaReply, FaTrashAlt } from "react-icons/fa";
 
@@ -12,6 +14,7 @@ class List extends React.Component {
       name: "",
       edit: false,
       list: this.props.list,
+      addTask: false,
     };
   }
 
@@ -26,21 +29,25 @@ class List extends React.Component {
   }
 
   render() {
-    const { name, list, edit } = this.state;
+    const { name, list, edit, addTask } = this.state;
 
     return (
       <div
         className="list"
-        onDragStart={(e) =>
-          this.props.dragStart(e, this.props.position, list.id)
-        }
-        onDragOver={(e) =>
-          this.props.dragEnter(e, this.props.position, list.id)
-        }
-        onDragEnd={this.props.dragEnd}
-        draggable
+        onDragOver={() => this.props.dragOverTask(list.id)}
+        onDragEnd={() => this.props.dragEndTask(list.id)}
       >
-        <div className="titleList">
+        <div
+          className="titleList"
+          onDragStart={(e) =>
+            this.props.dragStart(e, this.props.position, list.id)
+          }
+          onDragOver={(e) =>
+            this.props.dragEnter(e, this.props.position, list.id)
+          }
+          onDragEnd={this.props.dragEnd}
+          draggable
+        >
           {edit ? (
             <>
               <input
@@ -71,10 +78,26 @@ class List extends React.Component {
               </button>
             </>
           )}
-          <button className="addTodo">
+          <button className="addTodo" onClick={() => this.onAddTask()}>
             <FaPlus />
           </button>
         </div>
+        {addTask ? (
+          <AddTask
+            onAddTask={this.onAddTask}
+            undoAddTask={this.undoAddTask}
+            boardId={list.boardId}
+            listId={list.id}
+          />
+        ) : (
+          <></>
+        )}
+        <TaskList
+          boardId={list.boardId}
+          listId={list.id}
+          setTaskIdToMove={this.props.setTaskIdToMove}
+          listIdOfTheTaskToMove={this.props.listIdOfTheTaskToMove}
+        />
       </div>
     );
   }
@@ -87,12 +110,20 @@ class List extends React.Component {
     this.setState({ edit: false });
   };
 
+  onAddTask = () => {
+    this.setState({ addTask: true });
+  };
+
+  undoAddTask = () => {
+    this.setState({ addTask: false });
+  };
+
   renameList = async (e, id) => {
     if (e.keyCode === 13 && e.target.value.trim()) {
       let { result, message } = validatorListName(
         this.props.lists,
         this.state.name,
-        this.state.list.boardId,
+        this.state.list.boardId
       );
 
       if (result) {
@@ -123,7 +154,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({
       type: "DELETE_LIST",
       id,
-      boardId
+      boardId,
     }),
 });
 
