@@ -34,8 +34,6 @@
   .list, #addList{
     background-color:$colorThemeLight;
     margin: 0px 2em 0px 2em;
-    cursor: move;
-
     .titleList{
       width: 13em;
       height: 2.1em;
@@ -95,6 +93,10 @@
     .editList{
       display: block;
     }
+  }
+
+  .titleList:hover{
+    cursor: move;
   }
 
   .inputNameEdit, .undoEditList{

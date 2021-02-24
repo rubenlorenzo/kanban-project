@@ -32,7 +32,7 @@ const initialState = {
 };
 
 const tasksReducer = (state = initialState, action) => {
-  console.log(state.tasks, action.type, action.id, action.boardId);
+  console.log(state.tasks, action);
 
   switch (action.type) {
     case "ADD_TASK": {
@@ -61,6 +61,25 @@ const tasksReducer = (state = initialState, action) => {
 
       return state;
     }
+
+    case "MOVE_TASK_ON_THE_BOARD":
+      state.tasks.forEach((task) => {
+        if (task.id === action.id) {
+          task.listId = action.listId;
+        }
+      });
+
+      let numberTasksInList = state.tasks.filter(
+        (task) => task.listId === action.listId
+      ).length;
+
+      state.tasks.forEach((task) => {
+        if (task.id === action.id) {
+          task.positionList = numberTasksInList;
+        }
+      });
+
+      return state;
 
     case "DELETE_TASK": {
       return {

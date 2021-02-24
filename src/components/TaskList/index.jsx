@@ -9,10 +9,17 @@ class TaskList extends React.Component {
 
     this.state = {
       tasks: props.tasks,
+      listIdOfTheTaskToMove: props.listIdOfTheTaskToMove,
     };
   }
 
   static getDerivedStateFromProps(props, state) {
+    if (props.listIdOfTheTaskToMove !== state.listIdOfTheTaskToMove) {
+      return {
+        tasks: props.tasks,
+      };
+    }
+
     if (props.tasks.length !== state.tasks.length) {
       return {
         tasks: props.tasks,
@@ -31,12 +38,16 @@ class TaskList extends React.Component {
               return b.positionList - a.positionList;
             })
             .map((task) => (
-              <Task key={task.id} task={task} />
+              <Task key={task.id} task={task} dragStart={this.dragStart} />
             ))}
         </ul>
       </nav>
     );
   }
+
+  dragStart = async (id, listId) => {
+    await this.props.setTaskIdToMove(id);
+  };
 }
 
 const mapStateToProps = (state, ownProps) => {

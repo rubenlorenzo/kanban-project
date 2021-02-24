@@ -34,16 +34,20 @@ class List extends React.Component {
     return (
       <div
         className="list"
-        onDragStart={(e) =>
-          this.props.dragStart(e, this.props.position, list.id)
-        }
-        onDragOver={(e) =>
-          this.props.dragEnter(e, this.props.position, list.id)
-        }
-        onDragEnd={this.props.dragEnd}
-        draggable
+        onDragOver={() => this.props.dragOverTask(list.id)}
+        onDragEnd={() => this.props.dragEndTask(list.id)}
       >
-        <div className="titleList">
+        <div
+          className="titleList"
+          onDragStart={(e) =>
+            this.props.dragStart(e, this.props.position, list.id)
+          }
+          onDragOver={(e) =>
+            this.props.dragEnter(e, this.props.position, list.id)
+          }
+          onDragEnd={this.props.dragEnd}
+          draggable
+        >
           {edit ? (
             <>
               <input
@@ -88,7 +92,12 @@ class List extends React.Component {
         ) : (
           <></>
         )}
-        <TaskList boardId={list.boardId} listId={list.id} />
+        <TaskList
+          boardId={list.boardId}
+          listId={list.id}
+          setTaskIdToMove={this.props.setTaskIdToMove}
+          listIdOfTheTaskToMove={this.props.listIdOfTheTaskToMove}
+        />
       </div>
     );
   }

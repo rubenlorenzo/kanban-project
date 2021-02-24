@@ -19,6 +19,9 @@ class Board extends React.Component {
       endPosition: null,
       startId: null,
       endId: null,
+
+      listIdOfTheTaskToMove: null,
+      taskIdOfTheTaskToMove: null,
     };
 
     this.addList = React.createRef();
@@ -81,6 +84,10 @@ class Board extends React.Component {
                     dragStart={this.handleDragStart}
                     dragEnter={this.handleDragEnter}
                     dragEnd={this.handleDragEnd}
+                    dragOverTask={this.dragOverTask}
+                    dragEndTask={this.dragEndTask}
+                    setTaskIdToMove={this.setTaskIdToMove}
+                    listIdOfTheTaskToMove={this.state.listIdOfTheTaskToMove}
                   />
                 ))}
             </div>
@@ -129,6 +136,26 @@ class Board extends React.Component {
       this.addList.current.style.display = "none";
     }
   };
+
+  dragOverTask = (id) => {
+    this.setState({ listIdOfTheTaskToMove: id });
+  };
+
+  setTaskIdToMove = (id) => {
+    this.setState({ taskIdOfTheTaskToMove: id });
+  };
+
+  dragEndTask = async (id) => {
+    await this.props.moveTaskOnTheBoard(
+      this.state.taskIdOfTheTaskToMove,
+      this.state.listIdOfTheTaskToMove
+    );
+
+    this.setState({
+      taskIdOfTheTaskToMove: null,
+      listIdOfTheTaskToMove: null,
+    });
+  };
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -150,6 +177,13 @@ const mapDispatchToProps = (dispatch) => ({
       startId,
       endPosition,
       endId,
+    }),
+
+  moveTaskOnTheBoard: (idTask, listId) =>
+    dispatch({
+      type: "MOVE_TASK_ON_THE_BOARD",
+      id: idTask,
+      listId,
     }),
 });
 

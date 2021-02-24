@@ -17,7 +17,11 @@ class Task extends React.Component {
     const { task, name, edit } = this.state;
 
     return (
-      <li className="task">
+      <li
+        className="task"
+        onDragStart={() => this.props.dragStart(task.id, task.listId)}
+        draggable
+      >
         {edit ? (
           <>
             <input
@@ -69,13 +73,13 @@ class Task extends React.Component {
     }
   };
 
-  deleteTask = async(id) => {
+  deleteTask = async (id) => {
     let resultConfirm = window.confirm("Deseas eliminar la tarea");
 
     if (resultConfirm) {
       await this.props.deleteTask(id);
     }
-  }
+  };
 }
 
 const mapDispatchToProps = (dispatch) => ({
