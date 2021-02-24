@@ -11,11 +11,8 @@
   border-width: 3px 0px 3px 0px;
 
 
-  ul, .add{
+  ul{
     list-style: none;
-    margin-left: -1em;
-    
-
   }
 
   ul>li, .addBoard{
@@ -29,45 +26,40 @@
     font-weight: bold;
   }
 
-  .add{
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-end;
-  }
-
+  
 }
 
-.addBoard{
-  width: 5%;
-  padding:1.1em;
+.add {
   display: flex;
-  justify-content: space-between;
-  
-  > .inputName{
-    display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  .addBoard{
+    display: flex;  
+    margin-top: -0.4em; 
+    margin-left: 2.5em;
+    
+      input{
+        width: 70%;
+        margin: -0.3em 4% -0.3em -0.3em;
+      }
+
+      > button{
+        border: none;
+        text-decoration: none;
+        background: none;        
+        color: $colorFontEssential;
+      }
   }
 
-  > span{
-    font-size: 0.8em;
+  > button{    
+    color: $colorFontEssential;
+    background-color: $colorThemeLight;
+    border: 2px solid $colorBorderStandard;
+    border-radius: 0.5em;
+    padding: 0.7em 0.8em 0.6em 0.8em;
+    margin-left: 20%;
+    margin-right: 2.2em;
   }
-}
-
-.addBoard:hover{
-  width: 100%;
-  margin-left: 2.5em;
-  padding: 0.66em;
-
-  > .inputName{
-    display:block;
-    width: 70%;
-  }
-  
-  > span{
-    padding: 0.55em 0.7em 0em 0em;
-    display: block;
-    color: $colorFontHover;
-  }
-  
 }
 
 .board{

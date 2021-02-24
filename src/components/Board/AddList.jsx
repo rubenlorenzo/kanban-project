@@ -28,7 +28,7 @@ class AddList extends React.Component {
 
   render() {
     return (
-      <div id="addList" ref={this.props.onAddList}>
+      <div id="addList">
         <div className="titleList">
           <input
             className="inputName"
@@ -38,7 +38,7 @@ class AddList extends React.Component {
             onChange={this.handleChange}
             onKeyUp={(e) => this.handleSubmit(e, this.state.boardId)}
           ></input>
-          <button className="undoEditList" onClick={() => this.props.onShowAddList(false)}>
+          <button className="undoEditList" onClick={() => this.props.undoAddList()}>
             <FaReply />
           </button>
         </div>
@@ -60,6 +60,7 @@ class AddList extends React.Component {
         
       if (result) {
         await this.props.addList(this.state.name,boardId);
+        this.props.undoAddList();
       } else {
         alert(message);
       }

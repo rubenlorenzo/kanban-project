@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Board from "./Board";
 import AddBoard from "./AddBoard";
+import { FaPlus } from "react-icons/fa";
 import "./BoardList.scss";
 
 class BoardList extends React.Component {
@@ -10,10 +11,13 @@ class BoardList extends React.Component {
 
     this.state = {
       boards: props.boards,
+      addBoard: false,
     };
   }
 
   render() {
+    const { addBoard } = this.state;
+
     return (
       <nav id="boardList">
         <ul>
@@ -27,10 +31,30 @@ class BoardList extends React.Component {
             />
           ))}
         </ul>
-        <AddBoard updateBoards={this.updateBoards} />
+        <div className="add">
+          {addBoard ? (
+            <AddBoard
+              updateBoards={this.updateBoards}
+              undoAddBoard={this.undoAddBoard}
+            />
+          ) : (
+            <></>
+          )}
+          <button onClick={() => this.onAddBoard()}>
+            <FaPlus />
+          </button>
+        </div>
       </nav>
     );
   }
+
+  onAddBoard = () => {
+    this.setState({ addBoard: true });
+  };
+
+  undoAddBoard = () => {
+    this.setState({ addBoard: false });
+  };
 
   updateBoards = (boards) => {
     this.setState({ boards });
